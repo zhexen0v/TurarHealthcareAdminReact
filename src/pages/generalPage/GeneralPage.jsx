@@ -39,7 +39,7 @@ const GeneralPage = () => {
                const res = await axios.post('/general/update', generalInformation, {
                     headers: 
                     {
-                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA5NWI1NDNlMmNiMTI1ZTFiODY1ZTEiLCJpYXQiOjE2Nzg2MjMxNTcsImV4cCI6MTY3ODYyNDk1N30.RYEzJJCyhQAOh-vbnJpennxhjdFcdKeqqH-iS0szl5I"
+                         Authorization: localStorage.getItem('token')
                     }
                })
                setMessage('Обновление данных прошло успешно!');
