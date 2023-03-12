@@ -1,0 +1,19 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.field{
+     &__block-submit{
+          @include flex(flex-start, center);
+          gap: 16px;
+          padding-top: 16px;
+     }
+     &__submit{
+          padding: 12px 24px;
+          background: $blue !important;
+          @include text(14px, 18px, 400, white);
+          transition: 0.2s ease;
+          &:hover{
+               background: $lightenBlue !important;
+          }
+     }
+}

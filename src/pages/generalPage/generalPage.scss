@@ -1,0 +1,14 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.general{
+     padding: 24px 30px !important;
+     border: 1px solid $grayBorder;
+     background: #fff;
+     margin-bottom: 16px;
+     @include flex(space-between, flex-start);
+     gap: 40px;
+     &__part{
+          width: 50%;
+     }
+}
