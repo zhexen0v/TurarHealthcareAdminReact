@@ -1,0 +1,35 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.structure{
+     &__link{
+          border: 1px solid #dcdcdc;
+          width: 100%;
+          height: 60px;
+          padding: 8px 8px 8px 16px;
+          @include flex();
+          &-btn{
+               padding: 10px 20px;
+               background: $blue;
+               @include text(14px, 18px, 500, white);
+          }
+     }
+     &__links{
+          margin-left: 40px;
+          border-left: 1px solid #dcdcdc;
+          border-right: 1px solid #dcdcdc;
+          margin-bottom: 16px;
+          &-item{
+               border-bottom: 1px solid #dcdcdc;
+               width: 100%;
+               height: 60px;
+               padding: 8px 8px 8px 16px;
+               @include flex();
+               &-btn{
+                    padding: 10px 20px;
+                    background: $blue;
+                    @include text(14px, 18px, 500, white);
+               }
+          }
+     }
+}
