@@ -1,0 +1,23 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.blog{
+     padding: 24px 30px !important;
+     border: 1px solid #dadada;
+     background: #fff;
+     margin-bottom: 16px;
+     &__wrapper{
+          @include flex(space-between, center);
+          margin-bottom: 12px;
+     }
+     &__btn{
+          padding: 10px 20px;
+          background: $blue;
+          @include text(14px, 18px, 500, white);
+          transition: 0.2s ease;
+          &:hover{
+               background: $btnBlue;
+          }
+     }
+}
+

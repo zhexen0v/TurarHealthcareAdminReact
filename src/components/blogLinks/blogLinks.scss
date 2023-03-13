@@ -1,0 +1,37 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.blog{
+     &__item{
+          border: 1px solid #dcdcdc;
+          @include flex(space-between, center);
+          &-links{
+               background: $lightBlue;
+               @include flex(flex-start, center);
+               &-item{
+                    padding: 6px 12px;
+                    @include text(14px, 16px, 400, $blue);
+                    transition: 0.2s ease;
+                    i{
+                         margin-right: 8px;
+                    }
+                    &:hover{
+                         background: $facebookHover;
+                         color: white;
+                    }
+               }
+          }
+     }
+     &__part{
+          padding: 8px 16px;
+          &:first-child{
+               @include flex(flex-start, center);
+               gap: 24px;
+          }
+          &:last-child{
+               text-align: center;
+               width: 170px;
+               border-left: 1px solid #dcdcdc;
+          }
+     }
+}

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 import PageFromStructure from '../../components/pageFromStructure/PageFromStructure';
 import axios from '../../services/backendService';
@@ -6,6 +8,10 @@ import axios from '../../services/backendService';
 import './structurePage.scss';
 
 const StructurePage = () => {
+     const decoded = jwtDecode(localStorage.getItem('token'));
+     if ((decoded.exp + 18000000) > Date.now()) {
+          <Navigate to='/login'/>
+     }
      const [isLoading, setIsLoading] = useState(true);
      const [pages, setPages] = useState([]);
      useEffect(() => {

@@ -13,6 +13,7 @@ const LoginPage = () => {
 
      const loginAdmin = async (event) => {
           event.preventDefault();
+          setMessage('Загрузка...');
           const data = {
                username: login,
                password: password
@@ -21,7 +22,7 @@ const LoginPage = () => {
                .then(res => {
                     console.log(res);
                     localStorage.setItem('token', res.data.token);
-                    setMessage('');
+                    setMessage('Успешный вход!');
                     window.location = '/general';
                })
                .catch(err => {

@@ -1,0 +1,53 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+
+
+.file__upload{
+     padding: 12px 0;
+     @include flex(center, center);
+     gap: 24px;
+     background: $blue;
+     transition: 0.3s ease;
+     i{
+          color:#fff;
+          font-size: 36px;
+     }
+     h6{
+          @include text(18px, 24px, 400, white);
+     }
+     &:hover{
+          background: $lightenBlue;
+     }
+}
+
+#bg{
+     display: none;
+}
+
+.preview{
+     width: 100%;
+     object-fit: cover;
+     &-empty {
+          border: 1px solid $faviconGray;
+          height: 200px;
+          @include flex(center, center);
+          background: $grayBorder;
+          i{
+               color: $faviconGray;
+               font-size: 80px;
+          }
+     }
+}
+
+.article{
+     padding: 24px 30px !important;
+     border: 1px solid #dadada;
+     background: #fff;
+     margin-bottom: 16px;
+     &__wrapper{
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          grid-gap: 40px;
+     }
+}
