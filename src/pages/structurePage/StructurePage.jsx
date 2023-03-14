@@ -22,9 +22,10 @@ const StructurePage = () => {
      }, []);
      return (
           <div className="structure">
+               <div className="section__title">Структура сайта</div>
                {
                     isLoading ? (
-                         <h2>Loading...</h2>
+                         <h2>Загрузка...</h2>
                     ) : (
                          pages.length > 0 && pages.map((obj) => (
                               <PageFromStructure obj={obj}/>

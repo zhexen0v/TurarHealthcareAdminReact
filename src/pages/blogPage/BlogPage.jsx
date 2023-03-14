@@ -23,7 +23,7 @@ const BlogPage = () => {
                </div>
                {
                     isLoading ? (
-                         <h2>Loading...</h2>
+                         <h2>Загрузка...</h2>
                     ) : (
                          <>
                               {

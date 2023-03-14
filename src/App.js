@@ -11,6 +11,7 @@ import CreateNestedPage from './pages/createNestedPage/CreateNestedPage';
 import BlogPage from './pages/blogPage/BlogPage';
 import CreateArticlePage from './pages/createArticle/CreateArticlePage';
 import UpdateArticlePage from './pages/updateArticlePage/UpdateArticlePage';
+import PartnerPage from './pages/partnerPage/PartnerPage';
 
 function App() {
      const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
                                    <SidebarLink link="/general" name="Общая информация"/>
                                    <SidebarLink link="/structure" name="Структура"/>
                                    <SidebarLink link="/blog" name="Пресс-центр"/>
+                                   <SidebarLink link="/partners" name="Партнеры"/>
                               </div>
                          )
                     }
@@ -36,6 +38,7 @@ function App() {
                               <Route path='/blog' element={<BlogPage/>}/>
                               <Route path='/blog/create' element={<CreateArticlePage/>}/>
                               <Route path='/blog/:id' element={<UpdateArticlePage/>}/>
+                              <Route path='/partners' element={<PartnerPage/>}/>
                          </Routes>
                     </div>
                </div>

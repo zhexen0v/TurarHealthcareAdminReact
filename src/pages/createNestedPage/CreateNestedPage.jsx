@@ -67,87 +67,86 @@ const CreateNestedPage = () => {
      }
      return (
           <div className="edit">
-               {
-                    <form onSubmit={(e) => sendData(e)}>
-                         <div className="field__block">
-                              <h6 className="field__title">Название страницы на русском языке</h6>
-                              <input 
-                                   type="text" 
-                                   className="field__input" 
-                                   name="title.ru"
-                                   value={ruTitle} 
-                                   onChange={(e) => setRuTitle(e.target.value)}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Название страницы на казахском языке</h6>
-                              <input 
-                                   type="text" 
-                                   className="field__input" 
-                                   name="title.kz"
-                                   value={kzTitle} 
-                                   onChange={(e) => setKzTitle(e.target.value)}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Название страницы на английском языке</h6>
-                              <input 
-                                   type="text" 
-                                   className="field__input" 
-                                   name="title.en"
-                                   value={enTitle} 
-                                   onChange={(e) => setEnTitle(e.target.value)}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Ссылка на страницу</h6>
-                              <input 
-                                   type="text" 
-                                   className="field__input" 
-                                   name="link"
-                                   value={link} 
-                                   onChange={(e) => setLink(e.target.value)}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Текст страницы на русском языке</h6>
-                              <CKEditor
-                                   editor={ClassicEditor}
-                                   data={ruContent}
-                                   onReady={(editor) => {
-                                        console.log( "CKEditor5 React Component is ready to use!", editor );
-                                   }}
-                                   onChange={(event, editor) => {
-                                        const data = editor.getData();
-                                        setRuContent(data);
-                                   }}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Текст страницы на казахском языке</h6>
-                              <CKEditor
-                                   editor={ClassicEditor}
-                                   data={kzContent}
-                                   onReady={(editor) => {
-                                        console.log( "CKEditor5 React Component is ready to use!", editor );
-                                   }}
-                                   onChange={(_, editor) => {
-                                        const data = editor.getData();
-                                        setKzContent(data);
-                                   }}/>
-                         </div>
-                         <div className="field__block">
-                              <h6 className="field__title">Текст страницы на английском языке</h6>
-                              <CKEditor
-                                   editor={ClassicEditor}
-                                   data={enContent}
-                                   onReady={(editor) => {
-                                        console.log( "CKEditor5 React Component is ready to use!", editor );
-                                   }}
-                                   onChange={(_, editor) => {
-                                        const data = editor.getData();
-                                        setEnContent(data);
-                                   }}/>
-                         </div>
-                         <SubmitBlock
-                              message={message}/>
-                    </form>
-               }
+               <div className="section__title">Cоздание вложенной страницы</div>
+               <form onSubmit={(e) => sendData(e)}>
+                    <div className="field__block">
+                         <h6 className="field__title">Название страницы на русском языке</h6>
+                         <input 
+                              type="text" 
+                              className="field__input" 
+                              name="title.ru"
+                              value={ruTitle} 
+                              onChange={(e) => setRuTitle(e.target.value)}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Название страницы на казахском языке</h6>
+                         <input 
+                              type="text" 
+                              className="field__input" 
+                              name="title.kz"
+                              value={kzTitle} 
+                              onChange={(e) => setKzTitle(e.target.value)}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Название страницы на английском языке</h6>
+                         <input 
+                              type="text" 
+                              className="field__input" 
+                              name="title.en"
+                              value={enTitle} 
+                              onChange={(e) => setEnTitle(e.target.value)}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Ссылка на страницу</h6>
+                         <input 
+                              type="text" 
+                              className="field__input" 
+                              name="link"
+                              value={link} 
+                              onChange={(e) => setLink(e.target.value)}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Текст страницы на русском языке</h6>
+                         <CKEditor
+                              editor={ClassicEditor}
+                              data={ruContent}
+                              onReady={(editor) => {
+                                   console.log( "CKEditor5 React Component is ready to use!", editor );
+                              }}
+                              onChange={(event, editor) => {
+                                   const data = editor.getData();
+                                   setRuContent(data);
+                              }}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Текст страницы на казахском языке</h6>
+                         <CKEditor
+                              editor={ClassicEditor}
+                              data={kzContent}
+                              onReady={(editor) => {
+                                   console.log( "CKEditor5 React Component is ready to use!", editor );
+                              }}
+                              onChange={(_, editor) => {
+                                   const data = editor.getData();
+                                   setKzContent(data);
+                              }}/>
+                    </div>
+                    <div className="field__block">
+                         <h6 className="field__title">Текст страницы на английском языке</h6>
+                         <CKEditor
+                              editor={ClassicEditor}
+                              data={enContent}
+                              onReady={(editor) => {
+                                   console.log( "CKEditor5 React Component is ready to use!", editor );
+                              }}
+                              onChange={(_, editor) => {
+                                   const data = editor.getData();
+                                   setEnContent(data);
+                              }}/>
+                    </div>
+                    <SubmitBlock
+                         message={message}/>
+               </form>
           </div>
      )
 }

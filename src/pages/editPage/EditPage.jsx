@@ -67,9 +67,10 @@ const EditPage = () => {
      }
      return (
           <div className="edit">
+               <div className="section__title">Редактирование страницы</div>
                {
                     isLoading ? (
-                         <h2>Loading...</h2>
+                         <h2>Загрузка...</h2>
                     ) : (
                          <form onSubmit={(e) => sendData(e)}>
                               <div className="field__block">

@@ -86,9 +86,10 @@ const UpdateArticlePage = () => {
      }
      return (
           <div className="article">
+               <div className="section__title">Редактирование статьи</div>
                {
                     isLoading ? (
-                         <h2>Loading...</h2>
+                         <h2>Загрузка...</h2>
                     ) : (
                          <form onSubmit={(e) => sendData(e)}>
                               <div className="article__wrapper">
