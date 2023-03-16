@@ -9,12 +9,14 @@ import './blogPage.scss';
 const BlogPage = () => {
      const [isLoading, setIsLoading] = useState(true);
      const [articles, setArticles] = useState([]);
+     const [deleted, setDeleted] = useState(false);
      useEffect(() => {
+          setDeleted(false);
           axios.get('/blog')
                .then(res => setArticles(res.data))
                .catch(err => console.log(err))
                .finally(() => setIsLoading(false));
-     });
+     }, [deleted]);
      return (
           <div className="blog">
                <div className="blog__wrapper">
@@ -31,7 +33,8 @@ const BlogPage = () => {
                                         <BlogLinks 
                                              title={obj.ru.title}
                                              id={obj._id}
-                                             createdDate={obj.createdAt}/>
+                                             createdDate={obj.createdAt}
+                                             setArticleDeleted={setDeleted}/>
                                    ))
                               }
                          </>

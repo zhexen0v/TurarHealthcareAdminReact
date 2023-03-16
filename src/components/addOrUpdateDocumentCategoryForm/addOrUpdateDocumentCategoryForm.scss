@@ -1,0 +1,53 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.document__item{
+     &-form{
+          padding: 16px 24px;
+          background: white;
+          border: 1px solid #dcdcdc;
+          &-wrapper{
+               display: grid;
+               grid-template-columns: repeat(3, 1fr);
+               grid-gap: 0 32px;
+          }
+          .field__block-submit{
+               margin-bottom: 12px;
+               align-self: flex-end;
+               grid-column: 2 / 4;
+               input{
+                    padding: 10px 24px;
+                    line-height: 17px;
+               }
+          }
+          &-close{
+               @include flex();
+               margin-bottom: 12px;
+               .section__title{
+                    margin-bottom: 0;
+               }
+               i{
+                    font-size: 24px;
+                    color: $blue;
+                    transition: 0.2s ease;
+                    &:hover{
+                         cursor: pointer;
+                         color: $btnBlue;
+                    }
+               }
+          }
+     }
+     &-modal{
+          display: none;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(#000, 0.4);
+          justify-content: center;
+          align-items: center;
+     }
+}
+

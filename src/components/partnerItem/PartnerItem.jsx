@@ -141,6 +141,7 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
                               <h6 className="field__title">Изображение партнера</h6>
                               <input 
                                    type="file" 
+                                   accept="image/*"
                                    onChange={(e) => handleImageChange(e)}
                                    id={id}/>
                               <label htmlFor={id} class="file__upload">

@@ -142,6 +142,7 @@ const CreateArticlePage = () => {
                                    <h6 className="field__title">Обложка статьи</h6>
                                    <input 
                                         type="file" 
+                                        accept="image/*"
                                         onChange={(e) => handleImageChange(e)}
                                         id="bg"/>
                                    <label for="bg" class="file__upload">

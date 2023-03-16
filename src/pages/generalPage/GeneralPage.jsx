@@ -230,7 +230,7 @@ const GeneralPage = () => {
                     <div class="bg__wrapper">
                          <div class="bg__part">
                               <h3 class="section__title">Фоновое изображение</h3>
-                              <input type="file" id="base-bg" onChange={(e) => handImageChange(e)}/>
+                              <input type="file" accept="image/*" id="base-bg" onChange={(e) => handImageChange(e)}/>
                               <label htmlFor="base-bg" class="file__upload">
                                    <i class="fa-solid fa-upload"></i>
                                    <h6>Выберите файл</h6>
@@ -268,7 +268,7 @@ const GeneralPage = () => {
                     <div class="bg__wrapper">
                          <div class="bg__part">
                               <h3 class="section__title">Фоновое изображение главной страницы</h3>
-                              <input type="file" id="home-bg" onChange={(e) => handleHomeImageChange(e)}/>
+                              <input type="file" accept="image/*" id="home-bg" onChange={(e) => handleHomeImageChange(e)}/>
                               <label htmlFor="home-bg" class="file__upload">
                                    <i class="fa-solid fa-upload"></i>
                                    <h6>Выберите файл</h6>

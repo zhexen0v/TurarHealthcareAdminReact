@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
+import axios from '../../services/backendService';
+
 import './blogLinks.scss';
 
-const BlogLinks =({id, title, createdDate}) => {
+const BlogLinks =({id, title, createdDate, setArticleDeleted}) => {
      const showCorrectDateFormat = (dateStr) => {
           const date = new Date(dateStr);
           // const offset = date.getTimezoneOffset();
@@ -16,7 +18,22 @@ const BlogLinks =({id, title, createdDate}) => {
           const minutes = date.getMinutes();
           return `${getZero(day)}.${getZero(month)}.${getZero(year)} ${getZero(hour)}:${getZero(minutes)}`;
      }
+
      const getZero = (num) => (num > 9 ? ""+ num : "0"+num)
+
+     const deleteArticle = async (event) => {
+          event.preventDefault();
+          try {
+               axios.post(`/blog/delete/${id}`, null, {
+                    headers: {
+                         Authorization: localStorage.getItem('token')
+                    }
+               });
+               setArticleDeleted(true);
+          } catch (error) {
+               console.log(error);
+          }
+     }
      return (
           <div className="blog__item">
                <div className="blog__part">
@@ -34,11 +51,12 @@ const BlogLinks =({id, title, createdDate}) => {
                                    <i class="fa-solid fa-link"></i>   
                                    Открыть
                          </Link>
-                         <Link to={`/blog/delete${id}`}
-                              className="blog__item-links-item">
+                         <form onSubmit={(e) => deleteArticle(e)}>
+                              <button type="submit" className="blog__item-links-item">
                                    <i className="fa-solid fa-trash"></i>
-                                   Удалить
-                         </Link>
+                                        Удалить
+                              </button>
+                         </form>
                     </div>
                </div>
                <div className="blog__part">
