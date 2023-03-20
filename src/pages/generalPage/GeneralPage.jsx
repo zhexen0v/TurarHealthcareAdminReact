@@ -226,17 +226,17 @@ const GeneralPage = () => {
                </section>
           </form>
           <form onSubmit={(e) => uploadBackground(e)}>
-               <section class="bg">
-                    <div class="bg__wrapper">
-                         <div class="bg__part">
-                              <h3 class="section__title">Фоновое изображение</h3>
+               <section className="bg">
+                    <div className="bg__wrapper">
+                         <div className="bg__part">
+                              <h3 className="section__title">Фоновое изображение</h3>
                               <input type="file" accept="image/*" id="base-bg" onChange={(e) => handImageChange(e)}/>
-                              <label htmlFor="base-bg" class="file__upload">
-                                   <i class="fa-solid fa-upload"></i>
+                              <label htmlFor="base-bg" className="file__upload">
+                                   <i className="fa-solid fa-upload"></i>
                                    <h6>Выберите файл</h6>
                               </label>
-                              <div class="field__block-submit">
-                                   <input type="submit" value="Сохранить" class="field__submit"/>
+                              <div className="field__block-submit">
+                                   <input type="submit" value="Сохранить" className="field__submit"/>
                                    <h5>{bgMessage}</h5>
                               </div>
                          </div>
@@ -244,9 +244,9 @@ const GeneralPage = () => {
                               isLoading ? (
                                    <h2>Загрузка...</h2>
                               ) : (
-                                   <div class="bg__part">
-                                        <h3 class="section__title">Предпросмотр</h3>
-                                        <div class="bg__preview" style={
+                                   <div className="bg__part">
+                                        <h3 className="section__title">Предпросмотр</h3>
+                                        <div className="bg__preview" style={
                                              {
                                                   'backgroundImage': 
                                                   `linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${
@@ -255,7 +255,7 @@ const GeneralPage = () => {
                                                   })`
                                              }
                                         }>
-                                             <h4 class="bg__preview-text">главная / блог / название статьи</h4>
+                                             <h4 className="bg__preview-text">главная / блог / название статьи</h4>
                                         </div>
                                    </div>
                               )
@@ -264,17 +264,17 @@ const GeneralPage = () => {
                </section>
           </form>
           <form onSubmit={(e) => uploadHomeBackground(e)}>
-               <section class="bg">
-                    <div class="bg__wrapper">
-                         <div class="bg__part">
-                              <h3 class="section__title">Фоновое изображение главной страницы</h3>
+               <section className="bg">
+                    <div className="bg__wrapper">
+                         <div className="bg__part">
+                              <h3 className="section__title">Фоновое изображение главной страницы</h3>
                               <input type="file" accept="image/*" id="home-bg" onChange={(e) => handleHomeImageChange(e)}/>
-                              <label htmlFor="home-bg" class="file__upload">
-                                   <i class="fa-solid fa-upload"></i>
+                              <label htmlFor="home-bg" className="file__upload">
+                                   <i className="fa-solid fa-upload"></i>
                                    <h6>Выберите файл</h6>
                               </label>
-                              <div class="field__block-submit">
-                                   <input type="submit" value="Сохранить" class="field__submit"/>
+                              <div className="field__block-submit">
+                                   <input type="submit" value="Сохранить" className="field__submit"/>
                                    <h5>{homeBgMessage}</h5>
                               </div>
                          </div>
@@ -282,9 +282,9 @@ const GeneralPage = () => {
                               isLoading ? (
                                    <h2>Загрузка...</h2>
                               ) : (
-                                   <div class="bg__part">
-                                        <h3 class="section__title">Предпросмотр</h3>
-                                        <div class="bg__preview" style={
+                                   <div className="bg__part">
+                                        <h3 className="section__title">Предпросмотр</h3>
+                                        <div className="bg__preview" style={
                                              {
                                                   'backgroundImage': 
                                                   `linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${
@@ -293,7 +293,7 @@ const GeneralPage = () => {
                                                   })`
                                              }
                                         }>
-                                             <h4 class="bg__preview-text">главная страница</h4>
+                                             <h4 className="bg__preview-text">главная страница</h4>
                                         </div>
                                    </div>
                               )

@@ -44,7 +44,7 @@ const DocumentsPage = () => {
                     ) : (
                          documents.length > 0 && (
                               documents.map(obj => (
-                                   <ItemFromDocumentCategory key={obj._id} obj={obj}/>
+                                   <ItemFromDocumentCategory key={obj._id} obj={obj} categories={documents}/>
                               ))
                          )
                     )

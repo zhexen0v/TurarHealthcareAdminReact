@@ -1,8 +1,10 @@
 import './submitBlock.scss';
 
-const SubmitBlock = ({message}) => {
+const SubmitBlock = ({message, paddingDisable}) => {
      return (
-          <div className="field__block-submit">
+          <div 
+               className="field__block-submit"
+               style={paddingDisable && {'padding': '0'}}>
                <input 
                     type="submit" 
                     value="Сохранить" 

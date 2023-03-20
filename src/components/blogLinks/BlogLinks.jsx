@@ -41,14 +41,14 @@ const BlogLinks =({id, title, createdDate, setArticleDeleted}) => {
                     <div className="blog__item-links">
                          <Link to={`/blog/${id}`}
                               className="blog__item-links-item">
-                                   <i class="fa-regular fa-pen-to-square"></i>
+                                   <i className="fa-regular fa-pen-to-square"></i>
                                    Редактировать
                          </Link>
                          <Link to={`http://localhost:3000/blog/${id}`}
                               rel="noopener noreferrer"
                               target="_blank"
                               className="blog__item-links-item">
-                                   <i class="fa-solid fa-link"></i>   
+                                   <i className="fa-solid fa-link"></i>   
                                    Открыть
                          </Link>
                          <form onSubmit={(e) => deleteArticle(e)}>

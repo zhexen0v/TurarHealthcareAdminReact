@@ -20,17 +20,36 @@ const UpdateArticlePage = () => {
      const [ruContent, setRuContent] = useState('');
      const [kzContent, setKzContent] = useState('');
      const [enContent, setEnContent] = useState('');
+     const [isChecked, setIsChecked] = useState(false);
+     const [city, setCity] = useState('');
+     const [cities, setCities] = useState([]);
+     const handleChangeCity = (event) => {
+          setCity(event.target.value);
+     }
+     const handleChangeChecked = (event) => {
+          setIsChecked(event.target.checked);
+          console.log(isChecked);
+     };
 
      useEffect(() => {
+          const fetchData = async () => {
+               const responseArticle = await axios.get(`/blog/${id}`);
+               const responseCities = await axios.get('/city/all');
+               setRuTitle(responseArticle.data.title.ru);
+               setKzTitle(responseArticle.data.title.kz);
+               setEnTitle(responseArticle.data.title.en);
+               setRuContent(responseArticle.data.content.ru);
+               setKzContent(responseArticle.data.content.kz);
+               setEnContent(responseArticle.data.content.en);
+               setImage(`${axios.defaults.baseURL}/uploads/blog/${responseArticle.data.imageUrl}`);
+               setCity(responseArticle.data.city);
+               setIsChecked(responseArticle.data.isRelatedToCity);
+               setCities(responseCities.data);
+          }
+          fetchData();
           axios.get(`/blog/${id}`)
                .then(res => {
-                    setRuTitle(res.data.ru.title);
-                    setKzTitle(res.data.kz.title);
-                    setEnTitle(res.data.en.title);
-                    setRuContent(res.data.ru.content);
-                    setKzContent(res.data.kz.content);
-                    setEnContent(res.data.en.content);
-                    setImage(`http://localhost:4000/uploads/blog/${res.data.imageUrl}`);
+                    
                })
                .catch(err => console.log(err))
                .finally(() => setIsLoading(false));
@@ -40,28 +59,26 @@ const UpdateArticlePage = () => {
           const file = event.target.files[0];
           setImage(file);
           if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-              setSelectedImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+               const reader = new FileReader();
+               reader.onload = () => {
+                    setSelectedImage(reader.result);
+               };
+               reader.readAsDataURL(file);
           }
         };
 
      const sendData = async (event) => {
           event.preventDefault();
           const data = {
-               kz: {
-                    title: kzTitle,
-                    content: kzContent
+               title: {
+                    kz: kzTitle,
+                    ru: ruTitle,
+                    en: enTitle
                },
-               ru: {
-                    title: ruTitle,
-                    content: ruContent
-               },
-               en: {
-                    title: enTitle,
-                    content: enContent
+               content: {
+                    kz: kzContent,
+                    ru: ruContent,
+                    en: enContent
                }
           }
           const formData = new FormData();
@@ -69,6 +86,9 @@ const UpdateArticlePage = () => {
           formData.append('json', json);
           image && (formData.append('blog', image));
           formData.append('id', id);
+          formData.append('isRelatedToCity', isChecked);
+          formData.append('city', city);
+          console.log(city);
           setMessage('Загрузка...');
           try {
                const res = await axios.post('/blog/update', formData, {
@@ -168,8 +188,8 @@ const UpdateArticlePage = () => {
                                                   accept="image/*"
                                                   onChange={(e) => handleImageChange(e)}
                                                   id="bg"/>
-                                             <label for="bg" class="file__upload">
-                                                  <i class="fa-solid fa-upload"></i>
+                                             <label for="bg" className="file__upload">
+                                                  <i className="fa-solid fa-upload"></i>
                                                   <h6>Выберите файл</h6>
                                              </label>
                                         </div>
@@ -181,7 +201,39 @@ const UpdateArticlePage = () => {
                                                   <img src={image} alt="Предпросмотр" className="preview" />
                                              )
                                         }
+
+                                        <div className="field__block">
+                                             <h6 className="field__title">Это новость связана с объектами?</h6>
+                                             <label className="switch">
+                                                  <input 
+                                                       type="checkbox"
+                                                       checked={isChecked}
+                                                       onChange={handleChangeChecked}/>
+                                                  <span className="slider round"></span>
+                                             </label>
+                                        </div>
+                                        <div className="field__block">
+                                             {
+                                                  isChecked && (
+                                                       <>
+                                                            <h6 className="field__title">Выберите город:</h6>
+                                                            <select name="city" className="field__input" onChange={handleChangeCity}>
+                                                                 {
+                                                                      cities.map(obj => (
+                                                                           <option 
+                                                                                value={obj._id}
+                                                                                selected={obj._id === city}>
+                                                                                     {obj.name.ru}
+                                                                           </option>
+                                                                      ))
+                                                                 }
+                                                            </select>
+                                                       </>
+                                                  )
+                                             }
+                                        </div>
                                    </div>
+                                   
                               </div>
                          </form>
                     )

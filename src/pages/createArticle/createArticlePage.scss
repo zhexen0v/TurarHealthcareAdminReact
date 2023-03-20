@@ -25,14 +25,77 @@ input[type="file"]{
      display: none;
 }
 
+.switch {
+     position: relative;
+     display: inline-block;
+     width: 76px;
+     height: 40px;
+     margin-top: 8px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+     opacity: 0;
+     width: 0;
+     height: 0;
+}
+
+/* The slider */
+.slider {
+     position: absolute;
+     cursor: pointer;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: #ccc;
+     -webkit-transition: .4s;
+     transition: .4s;
+}
+
+.slider:before {
+     position: absolute;
+     content: "";
+     height: 32px;
+     width: 32px;
+     left: 6px;
+     bottom: 4px;
+     background-color: white;
+     -webkit-transition: .4s;
+     transition: .4s;
+}
+
+input:checked + .slider {
+     background-color: $blue;
+}
+
+input:focus + .slider {
+     box-shadow: 0 0 1px $blue;
+}
+
+input:checked + .slider:before {
+     transform: translateX(32px);
+}
+
+/* Rounded sliders */
+.slider.round {
+     border-radius: 40px;
+}
+
+.slider.round:before {
+     border-radius: 50%;
+}
+
 .preview{
      width: 100%;
      object-fit: cover;
+     margin-bottom: 16px;
      &-empty {
           border: 1px solid $faviconGray;
           height: 200px;
           @include flex(center, center);
           background: $grayBorder;
+          margin-bottom: 16px;
           i{
                color: $faviconGray;
                font-size: 80px;

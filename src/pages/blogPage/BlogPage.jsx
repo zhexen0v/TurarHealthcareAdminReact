@@ -31,7 +31,7 @@ const BlogPage = () => {
                               {
                                    articles.map(obj => (
                                         <BlogLinks 
-                                             title={obj.ru.title}
+                                             title={obj.title.ru}
                                              id={obj._id}
                                              createdDate={obj.createdAt}
                                              setArticleDeleted={setDeleted}/>

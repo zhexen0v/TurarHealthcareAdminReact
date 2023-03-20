@@ -28,7 +28,7 @@ const StructurePage = () => {
                          <h2>Загрузка...</h2>
                     ) : (
                          pages.length > 0 && pages.map((obj) => (
-                              <PageFromStructure obj={obj}/>
+                              <PageFromStructure key={obj._id} obj={obj}/>
                          ))
                     )
                }

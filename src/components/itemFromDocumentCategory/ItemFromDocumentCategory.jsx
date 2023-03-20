@@ -2,18 +2,23 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AddOrUpdateDocumentCategoryForm from '../addOrUpdateDocumentCategoryForm/AddOrUpdateDocumentCategoryForm';
+import AddOrUpdateDocumentForm from '../addOrUpdateDocumentForm/AddOrUpdateDocumentForm';
 
 import './itemFromDocumentCategory.scss';
 
 
-const ItemFromDocumentCategory = ({obj}) => {
-     const [toggleModal, setToggleModal] = useState(false);
+const ItemFromDocumentCategory = ({obj, categories}) => {
+     const [toggleUpdateCategoryModal, setToggleUpdateCategoryModal] = useState(false);
+     const [toggleAddDocumentModal, setToggleAddDocumentModal] = useState(false);
      const [toggleAccordion, setToggleAccordion] = useState(false);
      const handleClickSetOppositeToogleAccordion = () => {
           setToggleAccordion(!toggleAccordion);
      }
-     const handleClickSetOppositeToogleModal = () => {
-          setToggleModal(!toggleModal);
+     const handleClickSetOppositeToogleUpdateCategoryModal = () => {
+          setToggleUpdateCategoryModal(!toggleUpdateCategoryModal);
+     }
+     const handleClickSetOppositeToogleAddDocumentModal = () => {
+          setToggleAddDocumentModal(!toggleAddDocumentModal);
      }
      return (
           <>
@@ -22,14 +27,15 @@ const ItemFromDocumentCategory = ({obj}) => {
                          <div className="document__item-part">
                               <h6 className="document__item-title">{obj.title.ru}</h6>
                               <div className="document__item-link-list">
-                                   <Link to={`/internal-documents/category/add/${obj._id}`} 
+                                   <div
+                                        onClick={handleClickSetOppositeToogleAddDocumentModal}
                                         className="document__item-link-item"
                                         >
                                              <i className="fa-solid fa-plus"></i>
                                              Добавить документ
-                                   </Link>
+                                   </div>
                                    <div
-                                        onClick={handleClickSetOppositeToogleModal}
+                                        onClick={handleClickSetOppositeToogleUpdateCategoryModal}
                                         className="document__item-link-item"
                                         >
                                              <i className="fa-regular fa-pen-to-square"></i>
@@ -53,14 +59,20 @@ const ItemFromDocumentCategory = ({obj}) => {
                               <div 
                                    className="document__item-toggle" 
                                    onClick={handleClickSetOppositeToogleAccordion}>
-                                   <i class="fa-solid fa-caret-down"></i>
+                                   <i className="fa-solid fa-caret-down"></i>
                               </div>
                          </div>
                     </div>
+                    <AddOrUpdateDocumentForm
+                         isUpdating={false}
+                         toggle={toggleAddDocumentModal}
+                         handleFunction={handleClickSetOppositeToogleAddDocumentModal}
+                         currentCategory={obj._id}
+                         categories={categories}/>
                     <AddOrUpdateDocumentCategoryForm 
                          obj={obj} 
-                         toggle={toggleModal}
-                         handleFunction={handleClickSetOppositeToogleModal}
+                         toggle={toggleUpdateCategoryModal}
+                         handleFunction={handleClickSetOppositeToogleUpdateCategoryModal}
                          isUpdating={true}/>
                </div>
                <div 

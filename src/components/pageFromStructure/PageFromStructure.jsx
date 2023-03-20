@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
+import axios from '../../services/backendService';
 
 import './pageFromStructure.scss';
 
 const PageFromStructure = ({obj}) => {
+     const deletePage = async(event) => {
+          event.preventDefault();
+          axios.post(`/page/nested/delete/${obj._id}`, null, {
+               headers: {
+                    Authorization: localStorage.getItem('token')
+               }
+          })
+     }
+
      return (
           <>
                <div className="structure__link">
@@ -13,7 +23,7 @@ const PageFromStructure = ({obj}) => {
                                    <Link 
                                         to={`/create/nested/${obj._id}`}
                                         className="blog__item-links-item">
-                                             <i class="fa-solid fa-plus"></i>
+                                             <i className="fa-solid fa-plus"></i>
                                              Добавить вложенную страницу
                                    </Link>
                               </div>
@@ -36,21 +46,24 @@ const PageFromStructure = ({obj}) => {
                                              <div className="blog__item-links">
                                                   <Link to={`/edit/${item._id}`}
                                                        className="blog__item-links-item">
-                                                            <i class="fa-regular fa-pen-to-square"></i>
+                                                            <i className="fa-regular fa-pen-to-square"></i>
                                                             Редактировать
                                                   </Link>
                                                   <Link to={`http://localhost:3000/${item.link}`}
                                                        rel="noopener noreferrer"
                                                        target="_blank"
                                                        className="blog__item-links-item">
-                                                            <i class="fa-solid fa-link"></i>   
+                                                            <i className="fa-solid fa-link"></i>   
                                                             Открыть
                                                   </Link>
-                                                  <Link to={`/page/delete/${item._id}}`}
-                                                       className="blog__item-links-item">
-                                                            <i className="fa-solid fa-trash"></i>
-                                                            Удалить
-                                                  </Link>
+                                                  <form onSubmit={deletePage}>
+                                                       <button 
+                                                            type="submit"
+                                                            className="blog__item-links-item">
+                                                                 <i className="fa-solid fa-trash"></i>
+                                                                 Удалить
+                                                       </button>
+                                                  </form>
                                              </div>
                                              {/* <Link
                                                   to={`/edit/${item._id}`}

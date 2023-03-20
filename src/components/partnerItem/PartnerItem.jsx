@@ -144,8 +144,8 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
                                    accept="image/*"
                                    onChange={(e) => handleImageChange(e)}
                                    id={id}/>
-                              <label htmlFor={id} class="file__upload">
-                                   <i class="fa-solid fa-upload"></i>
+                              <label htmlFor={id} className="file__upload">
+                                   <i className="fa-solid fa-upload"></i>
                                    <h6>Выберите файл</h6>
                               </label>
                          </div>
