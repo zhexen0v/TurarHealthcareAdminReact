@@ -15,5 +15,14 @@
           &:hover{
                background: $lightenBlue !important;
           }
+          &-delete{
+               padding: 10px 24px;
+               @include text(14px, 17px, 400, white);
+               background: $red !important;
+               transition: 0.2s ease;
+               &:hover{
+                    background: rgba($red, 0.8) !important;
+               }
+          }
      }
 }

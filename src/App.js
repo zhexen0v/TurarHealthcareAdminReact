@@ -10,7 +10,8 @@ import BlogPage from './pages/blogPage/BlogPage';
 import CreateArticlePage from './pages/createArticle/CreateArticlePage';
 import UpdateArticlePage from './pages/updateArticlePage/UpdateArticlePage';
 import PartnerPage from './pages/partnerPage/PartnerPage';
-import DocumentsPage from './pages/documentsPage/DocumentsPage';
+import CitiesPage from './pages/citiesPage/CitiesPage';
+import CreateOrUpdateCity from './pages/CreateOrUpdateCity/CreateOrUpdateCity';
 
 import './App.scss';     
 
@@ -25,7 +26,7 @@ function App() {
                                    <SidebarLink link="/structure" name="Структура"/>
                                    <SidebarLink link="/blog" name="Пресс-центр"/>
                                    <SidebarLink link="/partners" name="Партнеры"/>
-                                   <SidebarLink link="/internal-documents" name="Внутренние документы"/>
+                                   <SidebarLink link="/cities" name="Города"/>
                               </div>
                          )
                     }
@@ -41,7 +42,9 @@ function App() {
                               <Route path='/blog/create' element={<CreateArticlePage/>}/>
                               <Route path='/blog/:id' element={<UpdateArticlePage/>}/>
                               <Route path='/partners' element={<PartnerPage/>}/>
-                              <Route path='/internal-documents' element={<DocumentsPage/>}/>
+                              <Route path='/cities' element={<CitiesPage/>}/>
+                              <Route path='/cities/create' element={<CreateOrUpdateCity isUpdating={false}/>}/>
+                              <Route path='/cities/:link' element={<CreateOrUpdateCity isUpdating={true}/>}/>
                          </Routes>
                     </div>
                </div>

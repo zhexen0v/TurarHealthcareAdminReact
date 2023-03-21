@@ -19,7 +19,7 @@ const StructurePage = () => {
                .then(res => setPages(res.data))
                .catch(err => console.log(err))
                .finally(() => setIsLoading(false));
-     }, []);
+     }, [pages]);
      return (
           <div className="structure">
                <div className="section__title">Структура сайта</div>

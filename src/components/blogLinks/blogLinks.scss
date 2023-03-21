@@ -9,6 +9,7 @@
                background: $lightBlue;
                @include flex(flex-start, center);
                &-item{
+                    display: flex;
                     padding: 6px 12px;
                     @include text(14px, 16px, 400, $blue);
                     transition: 0.2s ease;

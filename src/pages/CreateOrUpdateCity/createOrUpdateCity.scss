@@ -1,0 +1,49 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.city{
+     &__wrapper{
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+     }
+     &__part{
+          padding: 24px 30px !important;
+          border: 1px solid #dadada;
+          background: #fff;
+     }
+     &__map{
+          position: relative;
+          margin: 0 48px;
+          &-wrapper{
+               display: grid;
+               grid-template-columns: 320px 1fr;
+               grid-gap: 40px;
+          }
+          &-part{
+               &:last-child{
+                    position: relative;
+               }
+          }
+          &-img{
+               width: 100%;
+          } 
+          &-city{
+               position: absolute;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               gap: 4px;
+               &-name{
+                    @include text(20px, 20px, 600, $btnBlue);
+               }
+               &-dot{
+                    width: 13px;
+                    height: 13px;
+                    border: 3px solid $btnBlue;
+                    background: $yellow;
+                    border-radius: 100%;
+               }
+          }
+     }
+}

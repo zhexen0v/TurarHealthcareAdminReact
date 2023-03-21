@@ -4,6 +4,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import axios from '../../services/backendService';
+import AddOrUpdateDocumentForm from '../../components/addOrUpdateDocumentForm/AddOrUpdateDocumentForm';
 
 import './editPage.scss';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
@@ -13,27 +14,40 @@ const EditPage = () => {
      const [isLoading, setIsLoading] = useState(true);
      const [message, setMessage] = useState('');
      const [link, setLink] = useState('');
+     const [isList, setIsList] = useState(false);
      const [ruTitle, setRuTitle] = useState('');
      const [kzTitle, setKzTitle] = useState('');
      const [enTitle, setEnTitle] = useState('');
      const [ruContent, setRuContent] = useState('');
      const [kzContent, setKzContent] = useState('');
      const [enContent, setEnContent] = useState('');
+     const [documents, setDocuments] = useState([]);
 
      useEffect(() => {
-          axios.get(`/nested/${id}`)
-               .then(res => {
-                    setRuTitle(res.data.title.ru);
-                    setKzTitle(res.data.title.kz);
-                    setEnTitle(res.data.title.en);
-                    setRuContent(res.data.content.ru);
-                    setKzContent(res.data.content.kz);
-                    setEnContent(res.data.content.en);
-                    setLink(res.data.link);
-               })
-               .catch(err => console.log(err))
-               .finally(() => setIsLoading(false)); 
-     }, []);
+          const fetchData = async () => {
+               try {
+                    const responsePage = await axios.get(`/nested/${id}`);
+                    const responseDocuments = await axios.get(`/documents/${id}`);
+                    setIsList(responsePage.data.isListOfDocuments);
+                    setRuTitle(responsePage.data.title.ru);
+                    setKzTitle(responsePage.data.title.kz);
+                    setEnTitle(responsePage.data.title.en);
+                    setLink(responsePage.data.link);
+                    if (responsePage.data.isListOfDocuments) {
+                         setDocuments(responseDocuments.data);
+                    } else {
+                         setRuContent(responsePage.data.content.ru);
+                         setKzContent(responsePage.data.content.kz);
+                         setEnContent(responsePage.data.content.en);
+                    }
+                    setIsLoading(false);
+               } catch (error) {
+                    console.log(error);
+               }
+          }
+
+          fetchData();
+     }, [documents]);
 
      const sendData = async (event) => {
           event.preventDefault();
@@ -72,6 +86,7 @@ const EditPage = () => {
                     isLoading ? (
                          <h2>Загрузка...</h2>
                     ) : (
+                         <>
                          <form onSubmit={(e) => sendData(e)}>
                               <div className="field__block">
                                    <h6 className="field__title">Название страницы на русском языке</h6>
@@ -109,48 +124,78 @@ const EditPage = () => {
                                         value={link} 
                                         onChange={(e) => setLink(e.target.value)}/>
                               </div>
-                              <div className="field__block">
-                                   <h6 className="field__title">Текст страницы на русском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={ruContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(event, editor) => {
-                                             const data = editor.getData();
-                                             setRuContent(data);
-                                        }}/>
-                              </div>
-                              <div className="field__block">
-                                   <h6 className="field__title">Текст страницы на казахском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={kzContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(_, editor) => {
-                                             const data = editor.getData();
-                                             setKzContent(data);
-                                        }}/>
-                              </div>
-                              <div className="field__block">
-                                   <h6 className="field__title">Текст страницы на английском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={enContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(_, editor) => {
-                                             const data = editor.getData();
-                                             setEnContent(data);
-                                        }}/>
-                              </div>
+                              {
+                                   !isList && (
+                                        <>
+                                             <div className="field__block">
+                                                  <h6 className="field__title">Текст страницы на русском языке</h6>
+                                                  <CKEditor
+                                                       editor={ClassicEditor}
+                                                       data={ruContent}
+                                                       onReady={(editor) => {
+                                                            console.log( "CKEditor5 React Component is ready to use!", editor );
+                                                       }}
+                                                       onChange={(event, editor) => {
+                                                            const data = editor.getData();
+                                                            setRuContent(data);
+                                                       }}/>
+                                             </div>
+                                             <div className="field__block">
+                                                  <h6 className="field__title">Текст страницы на казахском языке</h6>
+                                                  <CKEditor
+                                                       editor={ClassicEditor}
+                                                       data={kzContent}
+                                                       onReady={(editor) => {
+                                                            console.log( "CKEditor5 React Component is ready to use!", editor );
+                                                       }}
+                                                       onChange={(_, editor) => {
+                                                            const data = editor.getData();
+                                                            setKzContent(data);
+                                                       }}/>
+                                             </div>
+                                             <div className="field__block">
+                                                  <h6 className="field__title">Текст страницы на английском языке</h6>
+                                                  <CKEditor
+                                                       editor={ClassicEditor}
+                                                       data={enContent}
+                                                       onReady={(editor) => {
+                                                            console.log( "CKEditor5 React Component is ready to use!", editor );
+                                                       }}
+                                                       onChange={(_, editor) => {
+                                                            const data = editor.getData();
+                                                            setEnContent(data);
+                                                       }}/>
+                                             </div>
+                                        </>
+                                   )
+                              }
                               <SubmitBlock
                                    message={message}/>
                          </form>
+                         {
+                              isList && (
+                                   <>
+                                        <AddOrUpdateDocumentForm
+                                             key={1}
+                                             isUpdating={false}
+                                             pageId={id}/>
+                                        
+                                        <div className="section__title" style={{'marginTop':'16px'}}>Обновление документов</div>
+                                   </>  
+                              )
+                         }
+                         {
+                              isList && documents.length > 0 && (
+                                   documents.map((obj) => (
+                                        <AddOrUpdateDocumentForm
+                                             key={obj._id}
+                                             isUpdating={true}
+                                             pageId={id}
+                                             obj={obj}/>
+                                   ))
+                              )
+                         }
+                         </>
                     )
                }
           </div>

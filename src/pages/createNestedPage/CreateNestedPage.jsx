@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -9,6 +9,7 @@ import './createPage.scss';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 
 const CreateNestedPage = () => {
+     const navigate = useNavigate();
      const { id } = useParams();
      //const [isLoading, setIsLoading] = useState(true);
      const [isList, setIsList] = useState(false);
@@ -70,6 +71,9 @@ const CreateNestedPage = () => {
                });
                setMessage('Создание страницы прошло успешно!');
                console.log(res);
+               setTimeout(() => {
+                    navigate('/structure');
+               }, 500);
           } catch (error) {
                console.log(error);
                setMessage('Произошла ошибка во время создания страницы!');

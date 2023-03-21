@@ -4,9 +4,9 @@ import axios from '../../services/backendService';
 import './pageFromStructure.scss';
 
 const PageFromStructure = ({obj}) => {
-     const deletePage = async(event) => {
+     const deletePage = async(event, id) => {
           event.preventDefault();
-          axios.post(`/page/nested/delete/${obj._id}`, null, {
+          axios.post(`/page/nested/delete/${id}`, null, {
                headers: {
                     Authorization: localStorage.getItem('token')
                }
@@ -41,7 +41,7 @@ const PageFromStructure = ({obj}) => {
                          <div className="structure__links">
                               {
                                    obj.nestedPages.map((item) => (
-                                        <div className="structure__links-item">
+                                        <div key={item._id} className="structure__links-item">
                                              <h6>{item.title.ru}</h6>
                                              <div className="blog__item-links">
                                                   <Link to={`/edit/${item._id}`}
@@ -56,7 +56,7 @@ const PageFromStructure = ({obj}) => {
                                                             <i className="fa-solid fa-link"></i>   
                                                             Открыть
                                                   </Link>
-                                                  <form onSubmit={deletePage}>
+                                                  <form onSubmit={(e) => deletePage(e, item._id)}>
                                                        <button 
                                                             type="submit"
                                                             className="blog__item-links-item">
