@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../../services/backendService';
 
 import InputBlock from '../../components/inputBlock/inputBlock';
@@ -13,10 +14,12 @@ const GeneralPage = () => {
      const [message, setMessage] = useState('');
      const [bgMessage, setBgMessage] = useState('');
      const [homeBgMessage, setHomeBgMessage] = useState('');
+     const [phoneMessage, setPhoneMessage] = useState('');
      const [bg, setBg] = useState(null);
      const [selectedBg, setSelectedBg] = useState(null);
      const [homeBg, setHomeBg] = useState(null);
      const [selectedHomeBg, setSelectedHomeBg] = useState(null);
+     const [phoneFile, setPhoneFile] = useState(null);
 
      const handleChange = (event) => {
           const { name, value } = event.target;
@@ -61,6 +64,10 @@ const GeneralPage = () => {
           }
           console.log(selectedBg);
      };
+
+     const handlePhone = (event) => {
+          setPhoneFile(event.target.files[0]);
+     }
 
 
      const sendData = async (e) => {
@@ -117,6 +124,25 @@ const GeneralPage = () => {
           } catch (error) {
                console.warn(error);
                setHomeBgMessage('Произошла ошибка во время обновление фонового изображения!');
+          }
+     }
+
+     const uploadPhone = async (e) => {
+          e.preventDefault();
+          setPhoneMessage('Загрузка...');
+          try {
+               const formData = new FormData();
+               formData.append("phone", phoneFile);
+               const res = await axios.post('/phone/change', formData, {
+                    headers: {
+                         Authorization: localStorage.getItem('token')
+                    }
+               })
+               setPhoneMessage('Обновление списка номеров сотрудников прошло успешно!');
+               console.log(res);
+          } catch (error) {
+               console.warn(error);
+               setPhoneMessage('Произошла ошибка во время обновление списка номеров сотрудников!');
           }
      }
 
@@ -298,6 +324,33 @@ const GeneralPage = () => {
                                    </div>
                               )
                          }
+                    </div>
+               </section>
+          </form>
+
+          <form onSubmit={(e) => uploadPhone(e)}>
+               <section className="bg">
+                    <div className="bg__wrapper">
+                         <div className="bg__part">
+                              <div className="section__title">Список номеров сотрудников</div>
+                              <input type="file" id="phone" onChange={(e) => handlePhone(e)}/>
+                              <label htmlFor="phone" className="file__upload">
+                                   <i className="fa-solid fa-upload"></i>
+                                   <h6>Выберите файл</h6>
+                              </label>
+                              <div className="field__block-submit">
+                                   <input type="submit" value="Сохранить" className="field__submit"/>
+                                   <h5>{phoneMessage}</h5>
+                              </div>
+                         </div>
+                         <div className="bg__part">
+                              <Link 
+                                   to={`${axios.defaults.baseURL}/uploads/contacts/${generalInformation.listOfNumbers}`}
+                                   target="_blank"
+                                   rel="noopener noreferrer">{
+                                   generalInformation.listOfNumbers
+                              }</Link>
+                         </div>
                     </div>
                </section>
           </form>

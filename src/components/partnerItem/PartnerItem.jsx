@@ -5,7 +5,7 @@ import axios from '../../services/backendService';
 
 import './partnerItem.scss';
 
-const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDeleted}) => {
+const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDeleted, partnerLink}) => {
      const [isDeleting, setIsDeleting] = useState(false);
      const [message, setMessage] = useState('');
      const [selectedImage, setSelectedImage] = useState(null);
@@ -13,6 +13,7 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
      const [rus, setRus] = useState(ruTitle);
      const [kaz, setKaz] = useState(kzTitle);
      const [eng, setEng] = useState(enTitle);
+     const [link, setLink] = useState(partnerLink);
 
      const toggleDeleteSubmit = () => {
           setIsDeleting(prev => !prev);
@@ -57,7 +58,10 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
           }
           formData.append('ru', rus);   
           formData.append('kz', kaz);   
-          formData.append('en', eng);   
+          formData.append('en', eng);
+          if (link) {
+               formData.append('link', link);
+          }   
           updatedImage && (formData.append('partner', updatedImage));
           setMessage('Загрузка...');
           try {
@@ -74,6 +78,7 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
                     setRus('');
                     setKaz('');
                     setEng('');
+                    setLink('');
                }
                console.log(res);
           } catch (error) {
@@ -136,6 +141,14 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
                                    className="field__input" 
                                    value={eng} 
                                    onChange={(e) => setEng(e.target.value)}/>
+                         </div>
+                         <div className="field__block">
+                              <h6 className="field__title">Ссылка на сайт партнера</h6>
+                              <input 
+                                   type="text" 
+                                   className="field__input" 
+                                   value={link} 
+                                   onChange={(e) => setLink(e.target.value)}/>
                          </div>
                          <div className="field__block">
                               <h6 className="field__title">Изображение партнера</h6>

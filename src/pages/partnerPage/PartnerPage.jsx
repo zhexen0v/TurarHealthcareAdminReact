@@ -32,6 +32,7 @@ const PartnerPage = () => {
                                    ruTitle=""
                                    kzTitle=""
                                    enTitle=""
+                                   partnerLink=""
                                    create={true}
                                    />
                               {
@@ -44,6 +45,7 @@ const PartnerPage = () => {
                                              ruTitle={obj.ruTitle}
                                              kzTitle={obj.kzTitle}
                                              enTitle={obj.enTitle}
+                                             partnerLink={obj.link}
                                              create={false}
                                              />
                                    ))

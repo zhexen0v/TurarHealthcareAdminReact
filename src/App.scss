@@ -75,6 +75,13 @@ body{
           &:last-child{
                width: 70%;
           }
+          a{
+               @include text(18px, 24px, 500, $blue);
+               transition: 0.3s ease;
+               &:hover{
+                    color: $borderBlue !important;
+               }
+          }
      }
      &__preview{
           background-position: 0px 0px, 50% 50%;

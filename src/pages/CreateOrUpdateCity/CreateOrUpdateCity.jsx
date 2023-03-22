@@ -6,7 +6,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from '../../services/backendService';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 
-import mapKaz from '../../resources/img/map_kazakhstan_2.png';
+import mapKaz from '../../resources/img/map_kazakhstan.png';
 import './createOrUpdateCity.scss';
 
 const CreateOrUpdateCity = ({isUpdating}) => {
