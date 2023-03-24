@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {CKEditor} from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 import axios from '../../services/backendService';
+
+import EditorContainer from '../../components/editor/EditorContainer';
 
 import './createPage.scss';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
@@ -24,6 +23,18 @@ const CreateNestedPage = () => {
 
      const handleChangeIsList = (event) => {
           setIsList(event.target.checked);
+     }
+
+     const handleChangeRuContent = (value) => {
+          setRuContent(value);
+     }
+
+     const handleChangeKzContent = (value) => {
+          setKzContent(value);
+     }
+
+     const handleChangeEnContent = (value) => {
+          setEnContent(value);
      }
 
      // useEffect(() => {
@@ -140,42 +151,27 @@ const CreateNestedPage = () => {
                               <>
                                    <div className="field__block">
                                         <h6 className="field__title">Текст страницы на русском языке</h6>
-                                        <CKEditor
-                                             editor={ClassicEditor}
-                                             data={ruContent}
-                                             onReady={(editor) => {
-                                                  console.log( "CKEditor5 React Component is ready to use!", editor );
-                                             }}
-                                             onChange={(event, editor) => {
-                                                  const data = editor.getData();
-                                                  setRuContent(data);
-                                             }}/>
+                                        <EditorContainer
+                                             key={1}
+                                             toolbarId={'t1'}
+                                             value={ruContent}
+                                             setValue={handleChangeRuContent}/>
                                    </div>
                                    <div className="field__block">
                                         <h6 className="field__title">Текст страницы на казахском языке</h6>
-                                        <CKEditor
-                                             editor={ClassicEditor}
-                                             data={kzContent}
-                                             onReady={(editor) => {
-                                                  console.log( "CKEditor5 React Component is ready to use!", editor );
-                                             }}
-                                             onChange={(_, editor) => {
-                                                  const data = editor.getData();
-                                                  setKzContent(data);
-                                             }}/>
+                                        <EditorContainer
+                                             key={2}
+                                             toolbarId={'t2'}
+                                             value={kzContent}
+                                             setValue={handleChangeKzContent}/>
                                    </div>
                                    <div className="field__block">
                                         <h6 className="field__title">Текст страницы на английском языке</h6>
-                                        <CKEditor
-                                             editor={ClassicEditor}
-                                             data={enContent}
-                                             onReady={(editor) => {
-                                                  console.log( "CKEditor5 React Component is ready to use!", editor );
-                                             }}
-                                             onChange={(_, editor) => {
-                                                  const data = editor.getData();
-                                                  setEnContent(data);
-                                             }}/>
+                                        <EditorContainer
+                                             key={3}
+                                             toolbarId={'t3'}
+                                             value={enContent}
+                                             setValue={handleChangeEnContent}/>
                                    </div>  
                               </>
                          )

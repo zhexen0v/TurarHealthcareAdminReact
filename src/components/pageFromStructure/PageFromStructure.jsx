@@ -56,14 +56,19 @@ const PageFromStructure = ({obj}) => {
                                                             <i className="fa-solid fa-link"></i>   
                                                             Открыть
                                                   </Link>
-                                                  <form onSubmit={(e) => deletePage(e, item._id)}>
-                                                       <button 
-                                                            type="submit"
-                                                            className="blog__item-links-item">
-                                                                 <i className="fa-solid fa-trash"></i>
-                                                                 Удалить
-                                                       </button>
-                                                  </form>
+                                                  {
+                                                       (item._id !== '641c9dd0812f801bbb67cec3' && item._id !== '641c9e22812f801bbb67d0f6') && (
+                                                       <form onSubmit={(e) => deletePage(e, item._id)}>
+                                                            <button 
+                                                                 type="submit"
+                                                                 className="blog__item-links-item">
+                                                                      <i className="fa-solid fa-trash"></i>
+                                                                      Удалить
+                                                            </button>
+                                                       </form>
+                                                       )
+                                                  }
+                                                  
                                              </div>
                                              {/* <Link
                                                   to={`/edit/${item._id}`}

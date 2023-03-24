@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {CKEditor} from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import axios from '../../services/backendService';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
+import EditorContainer from '../../components/editor/EditorContainer';
 
 import mapKaz from '../../resources/img/map_kazakhstan.png';
 import './createOrUpdateCity.scss';
@@ -25,7 +24,18 @@ const CreateOrUpdateCity = ({isUpdating}) => {
      const [horizontal, setHorizontal] = useState(0);
      const [vertical, setVertical] = useState(0);
 
-     
+     const handleChangeRuContent = (value) => {
+          setRuContent(value);
+     }
+
+     const handleChangeKzContent = (value) => {
+          setKzContent(value);
+     }
+
+     const handleChangeEnContent = (value) => {
+          setEnContent(value);
+     }
+
      const sendData = async (event) => {
           event.preventDefault();
           const data = {
@@ -166,45 +176,30 @@ const CreateOrUpdateCity = ({isUpdating}) => {
                          </div>
 
                          <div className="city__part">
-                              <div className="field__block">
-                                   <h6 className="field__title">Контент страницы города на русском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={ruContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(event, editor) => {
-                                             const data = editor.getData();
-                                             setRuContent(data);
-                                        }}/>
-                              </div>
-                              <div className="field__block">
-                                   <h6 className="field__title">Контент страницы города на казахском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={kzContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(_, editor) => {
-                                             const data = editor.getData();
-                                             setKzContent(data);
-                                        }}/>
-                              </div>
-                              <div className="field__block">
-                                   <h6 className="field__title">Контент страницы города на английском языке</h6>
-                                   <CKEditor
-                                        editor={ClassicEditor}
-                                        data={enContent}
-                                        onReady={(editor) => {
-                                             console.log( "CKEditor5 React Component is ready to use!", editor );
-                                        }}
-                                        onChange={(_, editor) => {
-                                             const data = editor.getData();
-                                             setEnContent(data);
-                                        }}/>
-                              </div>
+                         <div className="field__block">
+                              <h6 className="field__title">Текст статьи на русском языке</h6>
+                              <EditorContainer
+                                   key={1}
+                                   toolbarId="t1"
+                                   value={ruContent}
+                                   setValue={handleChangeRuContent}/>
+                         </div>
+                         <div className="field__block">
+                              <h6 className="field__title">Текст статьи на казахском языке</h6>
+                              <EditorContainer
+                                   key={2}
+                                   toolbarId="t2"
+                                   value={kzContent}
+                                   setValue={handleChangeKzContent}/>
+                         </div>
+                         <div className="field__block">
+                              <h6 className="field__title">Текст статьи на английском языке</h6>
+                              <EditorContainer
+                                   key={3}
+                                   toolbarId="t3"
+                                   value={enContent}
+                                   setValue={handleChangeEnContent}/>
+                         </div>
                               <SubmitBlock
                                    message={message}/>
                          </div>
