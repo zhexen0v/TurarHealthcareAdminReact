@@ -97,7 +97,7 @@ const PartnerItem = ({id, image, ruTitle, kzTitle, enTitle, create, setAddedOrDe
                                    <i className="fa-regular fa-image"></i>
                               </div>
                          ) : (
-                              <img src={`http://localhost:4000/uploads/partners/${image}`} alt="Логотип" />
+                              <img src={`${axios.defaults.baseURL}/uploads/partners/${image}`} alt="Логотип" />
                          )
                     }
                     {

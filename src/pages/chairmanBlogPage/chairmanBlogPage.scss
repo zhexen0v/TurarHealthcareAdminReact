@@ -1,0 +1,13 @@
+@import "../../resources/scss/mixins.scss";
+@import "../../resources/scss/variables.scss";
+
+.chairman{
+     padding: 24px 30px !important;
+     border: 1px solid $grayBorder;
+     background: #fff;
+     margin-bottom: 16px;
+     .section__title{
+          padding-bottom: 16px;
+          border-bottom: 1px solid $grayBorder;
+     }
+}

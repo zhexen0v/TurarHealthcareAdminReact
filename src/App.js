@@ -12,6 +12,7 @@ import UpdateArticlePage from './pages/updateArticlePage/UpdateArticlePage';
 import PartnerPage from './pages/partnerPage/PartnerPage';
 import CitiesPage from './pages/citiesPage/CitiesPage';
 import CreateOrUpdateCity from './pages/CreateOrUpdateCity/CreateOrUpdateCity';
+import ChairmanBlogPage from './pages/chairmanBlogPage/ChairmanBlogPage';
 
 import './App.scss';     
 
@@ -27,6 +28,7 @@ function App() {
                                    <SidebarLink link="/blog" name="Пресс-центр"/>
                                    <SidebarLink link="/partners" name="Партнеры"/>
                                    <SidebarLink link="/cities" name="Города"/>
+                                   <SidebarLink link="/chairman" name="Блог председателя"/>
                               </div>
                          )
                     }
@@ -45,6 +47,7 @@ function App() {
                               <Route path='/cities' element={<CitiesPage/>}/>
                               <Route path='/cities/create' element={<CreateOrUpdateCity isUpdating={false}/>}/>
                               <Route path='/cities/:link' element={<CreateOrUpdateCity isUpdating={true}/>}/>
+                              <Route path='/chairman' element={<ChairmanBlogPage/>}/>
                          </Routes>
                     </div>
                </div>

@@ -277,7 +277,7 @@ const GeneralPage = () => {
                                                   'backgroundImage': 
                                                   `linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${
                                                        selectedBg ? selectedBg :
-                                                       `http://localhost:4000/uploads/backgrounds/${generalInformation.bgImage}` 
+                                                       `${axios.defaults.baseURL}/uploads/backgrounds/${generalInformation.bgImage}` 
                                                   })`
                                              }
                                         }>
@@ -315,7 +315,7 @@ const GeneralPage = () => {
                                                   'backgroundImage': 
                                                   `linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${
                                                        selectedHomeBg ? selectedHomeBg :
-                                                       `http://localhost:4000/uploads/backgrounds/${generalInformation.homeBgImage}` 
+                                                       `${axios.defaults.baseURL}/uploads/backgrounds/${generalInformation.homeBgImage}` 
                                                   })`
                                              }
                                         }>
