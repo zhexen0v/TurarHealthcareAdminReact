@@ -20,18 +20,18 @@ function App() {
      const location = useLocation();
      return (
                <div className="main__wrapper">
-                    {
+                    <div className="main__sidebar">{
                          location.pathname !== '/login' && (
-                              <div className="main__sidebar">
+                              <>
                                    <SidebarLink link="/general" name="Общая информация"/>
                                    <SidebarLink link="/structure" name="Структура"/>
                                    <SidebarLink link="/blog" name="Пресс-центр"/>
                                    <SidebarLink link="/partners" name="Партнеры"/>
                                    <SidebarLink link="/cities" name="Города"/>
                                    <SidebarLink link="/chairman" name="Блог председателя"/>
-                              </div>
+                              </>
                          )
-                    }
+                    }</div>
 
                     <div className="main__content">
                          <Routes>

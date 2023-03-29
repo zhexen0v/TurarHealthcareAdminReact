@@ -169,7 +169,6 @@ const CreateOrUpdateCity = ({isUpdating}) => {
                                              <h6 className="city__map-city-name">{
                                                   ruTitle
                                              }</h6>
-                                             <div className="city__map-city-dot"></div>
                                         </div>
                                    </div>
                               </div>

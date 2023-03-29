@@ -33,21 +33,23 @@ const LoginPage = () => {
      }
 
      return (
-          <form className="login" onSubmit={(e) => loginAdmin(e)}>
-               <h2 className="login__title">Войти в админ-панель</h2>
-               <div className="login__block">
-                    <h6 className="login__block-text">Имя пользователя</h6>
-                    <input type="text" className="login__block-input" onChange={(e) => setLogin(e.target.value)} />
-               </div>
-               <div className="login__block">
-                    <h6 className="login__block-text">Пароль</h6>
-                    <input type="password" className="login__block-input" onChange={(e) => setPassword(e.target.value)} />
-               </div>
-               <div className="login__block">
-                    <input type="submit" className="login__block-submit" value="Войти" />
-               </div>
-               <div className="login__message">{message}</div>
-          </form>
+          <div id="login">
+               <form className="login" onSubmit={(e) => loginAdmin(e)}>
+                    <h2 className="login__title">Войти в админ-панель</h2>
+                    <div className="login__block">
+                         <h6 className="login__block-text">Имя пользователя</h6>
+                         <input type="text" className="login__block-input" onChange={(e) => setLogin(e.target.value)} />
+                    </div>
+                    <div className="login__block">
+                         <h6 className="login__block-text">Пароль</h6>
+                         <input type="password" className="login__block-input" onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <div className="login__block">
+                         <input type="submit" className="login__block-submit" value="Войти" />
+                    </div>
+                    <div className="login__message">{message}</div>
+               </form>
+          </div>
      )
 }
 

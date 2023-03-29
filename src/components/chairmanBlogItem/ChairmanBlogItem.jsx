@@ -46,6 +46,19 @@ const ChairmanBlogItem = ({obj, isAnswered}) => {
           }
      }
 
+     const deleteMail = async (event) => {
+          event.preventDefault();
+          try {
+               await axios.post(`/mail/delete/${obj._id}`, null, {
+                    headers: {
+                         Authorization: localStorage.getItem('token')
+                    }
+               });
+          } catch (error) {
+               console.log(error);
+          }
+     }
+
      const showCorrectDateFormat = (dateStr) => {
           const date = new Date(dateStr);
           const day = date.getDate();
@@ -93,13 +106,17 @@ const ChairmanBlogItem = ({obj, isAnswered}) => {
                          </div>
                     </div>
                     {
-                         isAnswered && (
+                         isAnswered ? (
                               <div className="chairman__item-header-part">
                                    <form onSubmit={showOrHideMail}>
                                         <input type="checkbox" checked={isChecked} onClick={handleChangeChecked} />
                                         <button type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
                                    </form>
                               </div>
+                         ) : (
+                              <form onSubmit={deleteMail}>
+                                   <button type="submit" className="chairman__item-delete"><i class="fa-solid fa-trash"></i></button>
+                              </form>
                          )
                     }
                </div>    
