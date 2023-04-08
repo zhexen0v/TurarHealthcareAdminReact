@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import InputBlock from "../inputBlock/inputBlock";
 
 import './addOrUpdateDocumentForm.scss';
 
-const AddOrUpdateDocumentForm = ({obj, isUpdating, pageId}) => {
+const AddOrUpdateDocumentForm = ({obj, isUpdating, pageId, isPagePart}) => {
      const [message, setMessage] = useState('');
      const [kzName, setKzName] = useState(isUpdating ? obj.name.kz : '');
      const [ruName, setRuName] = useState(isUpdating ? obj.name.ru : '');
@@ -39,7 +39,12 @@ const AddOrUpdateDocumentForm = ({obj, isUpdating, pageId}) => {
                formData.append('ruName', ruName);
                formData.append('kzName', kzName);
                formData.append('enName', enName);
-               const res = await axios.post(isUpdating ? `/document/update/${obj._id}` : '/document/add', formData, {
+               const res = await axios.post(
+                    isUpdating && isPagePart ? `/document/part/update/${obj._id}` : 
+                    !isUpdating && isPagePart ? `/document/part/add` : 
+                    isUpdating && !isPagePart ? `/document/update/${obj._id}` : 
+                    '/document/add', 
+                    formData, {
                     headers: {
                          Authorization: localStorage.getItem('token')
                     }

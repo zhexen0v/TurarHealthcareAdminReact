@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import EditorContainer from '../../components/editor/EditorContainer';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 
 

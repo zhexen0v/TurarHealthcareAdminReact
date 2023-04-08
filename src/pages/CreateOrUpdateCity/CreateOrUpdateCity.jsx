@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 import EditorContainer from '../../components/editor/EditorContainer';
 

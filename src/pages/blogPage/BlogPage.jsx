@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 import BlogLinks from '../../components/blogLinks/BlogLinks';
 
 import './blogPage.scss';

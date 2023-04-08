@@ -18,9 +18,16 @@
      &__links{
           position: relative;
           margin-left: 40px;
-          border-left: 1px solid #dcdcdc;
           border-right: 1px solid #dcdcdc;
           margin-bottom: 16px;
+          &-parts{
+               margin-left: 40px;
+               .structure__links-item{
+                    &::before{
+                         width: 60px;
+                    }
+               }
+          }
           &::before{
                position: absolute;
                content: "";
@@ -32,6 +39,7 @@
           }
           &-item{
                position: relative;
+               border-left: 1px solid #dcdcdc;
                border-bottom: 1px solid #dcdcdc;
                width: 100%;
                height: 54px;

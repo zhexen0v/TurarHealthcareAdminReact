@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SubmitBlock from '../submitBlock/submitBlock';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import './partnerItem.scss';
 

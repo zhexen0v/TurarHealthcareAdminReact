@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 import AddOrUpdateDocumentForm from '../../components/addOrUpdateDocumentForm/AddOrUpdateDocumentForm';
 import EditorContainer from '../../components/editor/EditorContainer';
 
 import './editPage.scss';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 
-const EditPage = () => {
+const EditPage = ({isPagePart}) => {
      const { id } = useParams();
      const [isLoading, setIsLoading] = useState(true);
      const [message, setMessage] = useState('');
@@ -37,8 +37,8 @@ const EditPage = () => {
      useEffect(() => {
           const fetchData = async () => {
                try {
-                    const responsePage = await axios.get(`/nested/${id}`);
-                    const responseDocuments = await axios.get(`/documents/${id}`);
+                    const responsePage = await axios.get(isPagePart ? `/part/${id}` : `/nested/${id}`);
+                    const responseDocuments = await axios.get(isPagePart ? `/documents/part/${id}` : `/documents/${id}`);
                     setIsList(responsePage.data.isListOfDocuments);
                     setRuTitle(responsePage.data.title.ru);
                     setKzTitle(responsePage.data.title.kz);
@@ -78,7 +78,7 @@ const EditPage = () => {
           }
           setMessage('Загрузка...');
           try {
-               const res = await axios.post('/page/nested/update', data, {
+               const res = await axios.post(isPagePart ? '/page/part/update' : '/page/nested/update', data, {
                     headers: {
                          Authorization: localStorage.getItem('token')
                     }
@@ -174,6 +174,7 @@ const EditPage = () => {
                                         <AddOrUpdateDocumentForm
                                              key={1}
                                              isUpdating={false}
+                                             isPagePart={isPagePart}
                                              pageId={id}/>
                                         
                                         <div className="section__title" style={{'marginTop':'16px'}}>Обновление документов</div>
@@ -186,6 +187,7 @@ const EditPage = () => {
                                         <AddOrUpdateDocumentForm
                                              key={obj._id}
                                              isUpdating={true}
+                                             isPagePart={isPagePart}
                                              pageId={id}
                                              obj={obj}/>
                                    ))

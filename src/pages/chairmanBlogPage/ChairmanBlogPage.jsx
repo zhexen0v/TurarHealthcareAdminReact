@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import ChairmanBlogItem from '../../components/chairmanBlogItem/ChairmanBlogItem';
 import Loader from '../../components/loader/Loader';

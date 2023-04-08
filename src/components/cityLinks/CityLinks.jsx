@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 
 const CityLinks =({id, title, setArticleDeleted, link}) => {

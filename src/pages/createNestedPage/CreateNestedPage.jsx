@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import EditorContainer from '../../components/editor/EditorContainer';
 
 import './createPage.scss';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
 
-const CreateNestedPage = () => {
+const CreateNestedPage = ({isPagePart}) => {
      const navigate = useNavigate();
      const { id } = useParams();
      //const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +55,6 @@ const CreateNestedPage = () => {
      const sendData = async (event) => {
           event.preventDefault();
           const data = {
-               parentPage: id,
                title: {
                     ru: ruTitle,
                     kz: kzTitle,
@@ -64,6 +63,13 @@ const CreateNestedPage = () => {
                link: link,
                isListOfDocuments: isList
           }
+
+          if (isPagePart) {
+               data.pageId = id;
+          } else {
+               data.parentPage = id;    
+          }
+
           if (!isList) {
                data.content = {
                     ru: ruContent,
@@ -75,7 +81,7 @@ const CreateNestedPage = () => {
           }
           setMessage('Загрузка...');
           try {
-               const res = await axios.post('/page/nested/add', data, {
+               const res = await axios.post(isPagePart ? '/page/part/add' : '/page/nested/add', data, {
                     headers: {
                          Authorization: localStorage.getItem('token')
                     }

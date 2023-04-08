@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import InputBlock from '../../components/inputBlock/inputBlock';
 import SubmitBlock from '../../components/submitBlock/submitBlock';

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from '../../services/backendService';
+import axios from '../../services/BackendService';
 
 import EditorContainer from '../../components/editor/EditorContainer';
 import SubmitBlock from '../../components/submitBlock/submitBlock';
